@@ -1,0 +1,15 @@
+﻿.validation-errors {
+    color: #C60000;
+}
+
+.modal-content-large {
+    width: 1024px;
+}
+
+.sort-th {
+    cursor: pointer;
+}
+
+th .fas {
+    margin-right: 5px;
+}

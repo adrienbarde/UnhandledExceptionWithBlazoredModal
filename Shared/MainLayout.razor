@@ -1,0 +1,21 @@
+﻿@inherits LayoutComponentBase
+@using Blazored.Toast.Configuration
+@using Common
+
+<div class="wrapper">
+    <Navbar />
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <div class="content">
+
+            <div class="container-fluid pt-2">
+                @Body
+            </div>
+        </div>
+    </div>
+
+    <Footer />
+    <BlazoredToasts Position="ToastPosition.BottomRight" Timeout="10" />
+</div>
+

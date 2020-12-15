@@ -1,0 +1,86 @@
+﻿@page "/Agency"
+@using ViewModels.Agency
+@inherits AgencyPageBase
+@inject IToastService toastService
+@inject IJSRuntime JSRuntime
+
+@if (Agencies != null)
+{
+    <div class="info-box">
+        <span class="info-box-icon bg-dark"><i class="fas fa-list"></i></span>
+        <div class="info-box-content">
+            <div class="row">
+                <div class="col-md-6">
+                    <h2>Agencies</h2>
+                    <span class="info-box-number">Agencies found @Agencies.Count()</span>
+                </div>
+
+                <div class="col-md-6">
+                    <button class="btn btn-outline-dark m-1 btn-sm float-right" @onclick="RefreshList">
+                        <i class="fas fa-sync-alt"></i> Refresh
+                    </button>
+                    <button class="btn btn-outline-dark m-1 btn-sm float-right" @onclick="@(() => Edit(0))">
+                        <i class="fas fa-plus"></i> Add
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+
+                    <div class="table-responsive">
+                        <table class="table table-hover table-sm">
+                            <thead>
+                                <tr>
+                                    <th scope="col" class="sort-th" @onclick="@(() => SortByColumn(nameof(AgencyViewModel.Id)))"><i class="fas @(SetSortIcon(nameof(AgencyViewModel.Id)))"></i>#</th>
+                                    <th scope="col" class="sort-th" @onclick="@(() => SortByColumn(nameof(AgencyViewModel.Code)))"><i class="fas @(SetSortIcon(nameof(AgencyViewModel.Code)))"></i>Code</th>
+                                    <th scope="col" class="sort-th" @onclick="@(() => SortByColumn(nameof(AgencyViewModel.Name)))"><i class="fas @(SetSortIcon(nameof(AgencyViewModel.Name)))"></i>Nom</th>
+                                    <th scope="col" class="sort-th" @onclick="@(() => SortByColumn(nameof(AgencyViewModel.Region)))"><i class="fas @(SetSortIcon(nameof(AgencyViewModel.Region)))"></i>Région</th>
+                                    <th scope="col" class="sort-th" @onclick="@(() => SortByColumn(nameof(AgencyViewModel.Credit)))"><i class="fas @(SetSortIcon(nameof(AgencyViewModel.Credit)))"></i>Crédit</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var agency in Agencies)
+                                {
+                                    <tr>
+                                        <th scope="row">@agency.Id</th>
+                                        <td>@agency.Code</td>
+                                        <td>@agency.Name</td>
+                                        <td>@agency.Region</td>
+                                        <td>@agency.Credit €</td>
+                                        <td>
+                                            <button class="btn btn-outline-dark m-1 btn-sm" @onclick="@(() => Edit(agency.Id))">
+                                                <i class="far fa-edit"></i> Details
+                                            </button>
+
+                                            <button class="btn btn-outline-danger m-1 btn-sm" @onclick="@(() => Delete(agency.Id))">
+                                                <i class="far fa-trash-alt"></i> Delete
+                                            </button>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+
+                @if (IsLoading)
+                {
+                    <div class="overlay">
+                        <i class="fas fa-2x fa-sync-alt fa-spin"></i>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <span>loading...</span>
+}

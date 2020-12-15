@@ -1,0 +1,28 @@
+[
+  {
+    "outputFileName": "wwwroot/css/rechargement.min.css",
+    "inputFiles": [
+      "wwwroot/plugins/fontawesome-free/css/all.css",
+      "wwwroot/css/adminlte.css",
+      "wwwroot/css/site.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/rechargement.min.js",
+    "inputFiles": [
+      "wwwroot/js/adminlte.js",
+      "wwwroot/js/main.js"
+    ],
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    },
+    "sourceMap": true
+  },
+  {
+    "outputFileName": "wwwroot/css/fonts.min.css",
+    "inputFiles": [
+      "wwwroot/css/fonts.css"
+    ]
+  }
+]

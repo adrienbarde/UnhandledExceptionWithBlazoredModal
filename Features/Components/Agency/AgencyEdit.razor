@@ -1,0 +1,45 @@
+﻿@page "/Agency/{AgencyId:int}"
+@using ViewModels.Agency
+
+<div class="modal-content-large">
+
+    @if (Agency is null)
+    {
+        <span>Loading...</span>
+    }
+    else
+    {
+        <div class="col-12">
+
+            <EditForm Model="@Agency" OnValidSubmit="@HandleValidSubmit">
+                <DataAnnotationsValidator />
+                <ValidationSummary />
+
+                <div class="form-group">
+                    <label for="title">Code</label>
+                    <InputText id="code" @bind-Value="Agency.Code" class="form-control" />
+                </div>
+
+                <div class="form-group">
+                    <label for="title">Name</label>
+                    <InputText id="nom" @bind-Value="Agency.Name" class="form-control" />
+                </div>
+
+                <div class="form-group">
+                    <label for="title">Region</label>
+                    <InputText id="region" @bind-Value="Agency.Region" class="form-control" />
+                </div>
+
+                <div class="form-group">
+                    <label for="title">Credit</label>
+                    <InputNumber id="credit" @bind-Value="Agency.Credit" class="form-control" />
+                </div>
+
+                <button class="btn btn-sm btn-dark" type="submit"><i class="far fa-save"></i> Save</button>
+                <NavLink class="btn btn-light m-1 btn-sm" href="/agency">Close</NavLink>
+
+            </EditForm>
+
+        </div>
+    }
+</div>
